@@ -1,0 +1,8 @@
+
+
+<div class="button-actions">
+    <button (click)="cambiarVistaClick()">Cambiar vista</button>  
+</div>
+
+<app-viajes-table-list *ngIf="!mostrarTarjetas"></app-viajes-table-list>
+<app-viajes-card-list *ngIf="mostrarTarjetas"></app-viajes-card-list>
