@@ -15,16 +15,31 @@ export class ViajesListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.viajes.push({
-      id: '13456789643gf4dsg3f7dgdsf3',
-      nombre: 'Un placer para el paladar',
-      destino: 'Galicia',
-      tipoDeViajeId: TipoDeViaje.Gastronomico,
-      duracion: 14,
-      enOferta: false,
-      estado: 1,
-      plazas: 30
-    })
+
+    setTimeout(() => {
+      this.viajes = [{
+        id: '13456789643gf4dsg3f7dgdsf3',
+        nombre: 'Un placer para el paladar',
+        destino: 'Galicia',
+        tipoDeViajeId: TipoDeViaje.Gastronomico,
+        duracion: 14,
+        enOferta: false,
+        estado: 1,
+        plazas: 30
+      }];
+
+      // this.viajes.push({
+      //   id: '13456789643gf4dsg3f7dgdsf3',
+      //   nombre: 'Un placer para el paladar',
+      //   destino: 'Galicia',
+      //   tipoDeViajeId: TipoDeViaje.Gastronomico,
+      //   duracion: 14,
+      //   enOferta: false,
+      //   estado: 1,
+      //   plazas: 30
+      // });
+    }, 5000);
+
   }
 
   cambiarVistaClick() {
