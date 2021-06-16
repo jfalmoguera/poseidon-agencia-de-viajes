@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TipoDeViaje } from '../models/enums/tipo-de-viaje.enum';
+import { Viaje } from '../models/viaje';
 
 @Component({
   selector: 'app-viajes-list',
@@ -8,10 +10,21 @@ import { Component, OnInit } from '@angular/core';
 export class ViajesListComponent implements OnInit {
 
   mostrarTarjetas = false;
+  viajes: Viaje[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
+    this.viajes.push({
+      id: '13456789643gf4dsg3f7dgdsf3',
+      nombre: 'Un placer para el paladar',
+      destino: 'Galicia',
+      tipoDeViajeId: TipoDeViaje.Gastronomico,
+      duracion: 14,
+      enOferta: false,
+      estado: 1,
+      plazas: 30
+    })
   }
 
   cambiarVistaClick() {

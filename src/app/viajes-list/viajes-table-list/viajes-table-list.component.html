@@ -1,1 +1,34 @@
-<p>viajes-table-list works!</p>
+<div class="container">
+    <h1>
+        Listado de Vaijes
+    </h1>
+    <table>
+        <thead>
+            <th>Pos.</th>
+            <th>Nombre</th>
+            <th>Destino</th>
+            <th class="right">Duracion (días)</th>
+            <th class="right">Plazas</th>
+            <th>Tipo de Viaje</th>
+            <th>Estado</th>
+            <th class="center">En oferta</th>
+            <th></th>
+        </thead>
+        <ng-container *ngFor="let viaje of viajes; let idx = index;">
+            <tr [ngClass]="{'en-oferta': viaje.enOferta}">
+                <td>{{idx + 1}}</td>
+                <td>{{viaje.nombre}}</td>
+                <td>{{viaje.destino}}</td>
+                <td class="right">{{viaje.duracion}}</td>
+                <td class="right">{{viaje.plazas}}</td>
+                <td>{{viaje.tipoDeViajeId}}</td>
+                <td>{{viaje.estado}}</td>  
+                <td class="center">
+                    <i class="fas" [ngClass]="viaje.enOferta ? 'fa-check' : ''"></i>
+                </td>
+                <td>            
+                </td>
+            </tr>
+        </ng-container>
+    </table>
+</div>

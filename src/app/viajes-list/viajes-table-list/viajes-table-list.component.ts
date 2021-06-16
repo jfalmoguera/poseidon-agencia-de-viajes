@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Viaje } from 'src/app/models/viaje';
 
 @Component({
   selector: 'app-viajes-table-list',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViajesTableListComponent implements OnInit {
 
+  @Input() viajes: Viaje[] = [];
   constructor() { }
 
   ngOnInit(): void {
