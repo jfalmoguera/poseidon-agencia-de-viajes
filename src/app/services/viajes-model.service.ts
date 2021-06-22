@@ -20,9 +20,11 @@ export class ViajesModelService {
     { id: 8, valor: 'Gastronomico' },
   ];
 
+  id = 1;
+
   constructor() {
     this.viajes = [{
-      id: '13456789643gf4dsg3f7dgdsf3',
+      id: 'viaje_' + this.id++,
       nombre: 'Un placer para el paladar',
       destino: 'Galicia',
       tipoDeViajeId: TipoDeViaje.Gastronomico,
@@ -41,7 +43,22 @@ export class ViajesModelService {
     return this.viajes.find(x => x.id === id);
   }
 
-  guardar(Viaje: Viaje): Viaje | null {
+  guardar(viaje: Viaje): Viaje | null {
+
+    if (viaje) {
+
+      if (viaje.id) {
+        const idx = this.viajes.findIndex(x => x.id === viaje.id);
+        if (idx >= 0) {
+          this.viajes[idx] = { ...viaje };
+          return this.viajes[idx];
+        }
+      } else {
+        this.viajes.push({ ...viaje, id: `viaje_${this.id++}` })
+        return this.viajes[this.viajes.length - 1];
+      }
+
+    }
 
     return null;
   }

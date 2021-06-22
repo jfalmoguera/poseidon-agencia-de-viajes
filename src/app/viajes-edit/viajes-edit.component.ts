@@ -1,6 +1,7 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Viaje } from '../models/viaje';
+import { IdValor } from '../services/id-valor';
 
 @Component({
   selector: 'app-viajes-edit',
@@ -10,13 +11,17 @@ import { Viaje } from '../models/viaje';
 export class ViajesEditComponent implements OnInit, OnChanges {
 
   @Input() viaje: Viaje | null = null;
+  @Input() tiposDeViaje: IdValor[] = [];
+  @Output() guardar = new EventEmitter<Viaje>();
+
+  submited = false;
 
   viajesForm: FormGroup;
 
   constructor(fb: FormBuilder) {
 
     this.viajesForm = fb.group({
-      // id: [''],
+      id: [''],
       nombre: ['', Validators.required],
       tipoDeViajeId: ['', Validators.required],
       duracion: ['', [Validators.required, Validators.min(1)]],
@@ -29,7 +34,7 @@ export class ViajesEditComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.viaje){
+    if (changes.viaje) {
       this.viajesForm.patchValue(changes.viaje.currentValue);
     }
   }
@@ -38,9 +43,18 @@ export class ViajesEditComponent implements OnInit, OnChanges {
   }
 
   guardarClick(form: FormGroup): void {
-    if (form.valid) {
 
+    this.submited = true;
+
+    if (form.valid) {      
+      this.guardar.emit(form.value);     
+      this.resetForm();
     }
+  }
+
+  resetForm(): void {
+    this.submited = false;
+    this.viajesForm.reset();
   }
 
 

@@ -1,4 +1,4 @@
-<form [formGroup]="viajesForm" (ngSubmit)="guardarClick(viajesForm)">
+<form [formGroup]="viajesForm" (ngSubmit)="guardarClick(viajesForm)" [ngClass]="{submited: submited}">
     <fieldset>
         <legend>
             <h1> Edicion de Viajes</h1>
@@ -19,7 +19,7 @@
             <div class="field-element">
                 <label for="">Tipo de Viaje: </label>
                 <select id="" formControlName="tipoDeViajeId">
-
+                    <option *ngFor="let item of tiposDeViaje" [value]="item.id">{{item.valor}}</option>
                 </select>
             </div>
             <div class="field-element">
@@ -42,6 +42,6 @@
     </fieldset>
     <div class="row-buttons">
         <button class="btn primary" type="submit">Guardar</button>
-        <button class="btn " type="button" (click)="viajesForm.reset()">Nuevo Viaje</button>
+        <button class="btn " type="button" (click)="resetForm()">Nuevo Viaje</button>
     </div>
 </form>
