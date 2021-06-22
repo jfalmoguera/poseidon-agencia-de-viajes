@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Viaje } from '../models/viaje';
 import { IdValor } from '../services/id-valor';
 
@@ -25,7 +25,7 @@ export class ViajesEditComponent implements OnInit, OnChanges {
       nombre: ['', Validators.required],
       tipoDeViajeId: ['', Validators.required],
       duracion: ['', [Validators.required, Validators.min(1)]],
-      destino: ['', Validators.required],
+      destino: ['', [Validators.required, this.validarDestino]],
       plazas: ['', [Validators.required, Validators.min(1)]],
       enOferta: [''],
       estado: ['']
@@ -40,14 +40,31 @@ export class ViajesEditComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+
+    this.viajesForm.controls.destino.valueChanges.subscribe((x: string) => {
+      // if (x?.toLowerCase() === 'malaga') {
+      //   this.viajesForm.controls.enOferta.setValue(true);
+      // }
+
+      if (x?.toLowerCase() === 'galicia') {
+        this.viajesForm.controls.enOferta.disable();
+      } else {
+        this.viajesForm.controls.enOferta.enable();
+      }
+    });
+
+    this.viajesForm.valueChanges.subscribe(x => {
+      console.log(x);
+    })
+
   }
 
   guardarClick(form: FormGroup): void {
 
     this.submited = true;
 
-    if (form.valid) {      
-      this.guardar.emit(form.value);     
+    if (form.valid) {
+      this.guardar.emit(form.value);
       this.resetForm();
     }
   }
@@ -55,6 +72,15 @@ export class ViajesEditComponent implements OnInit, OnChanges {
   resetForm(): void {
     this.submited = false;
     this.viajesForm.reset();
+  }
+
+  validarDestino(control: FormControl): { [s: string]: boolean } | null {
+
+    if (control.value?.toLowerCase() === 'londres') {
+      return { invalidDestination: true }
+    }
+
+    return null;
   }
 
 

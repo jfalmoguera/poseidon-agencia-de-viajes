@@ -11,6 +11,7 @@
             <div class="field-element">
                 <label for="">Destino: </label>
                 <input id="" type="text" formControlName="destino">
+                <span class="error" *ngIf="viajesForm.controls.destino.hasError('invalidDestination')">Restriccion COVID</span>
             </div>
             <div class="field-element">
                 <label for="">Duracion: </label>
