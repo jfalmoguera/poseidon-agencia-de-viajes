@@ -1,6 +1,6 @@
 <div class="container">
     <h1>
-        Listado de Vaijes
+        Listado de Viajes
     </h1>
     <table>
         <thead>
@@ -26,7 +26,8 @@
                 <td class="center">
                     <i class="fas" [ngClass]="viaje.enOferta ? 'fa-check' : ''"></i>
                 </td>
-                <td>            
+                <td>
+                    <i class="far fa-edit" title="Editar Viaje" (click)="editar.emit(viaje.id)"></i>                     
                 </td>
             </tr>
         </ng-container>

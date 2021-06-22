@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TipoDeViaje } from '../models/enums/tipo-de-viaje.enum';
 import { Viaje } from '../models/viaje';
 
@@ -9,36 +9,16 @@ import { Viaje } from '../models/viaje';
 })
 export class ViajesListComponent implements OnInit {
 
-  mostrarTarjetas = false;
-  viajes: Viaje[] = [];
+  @Output() editar = new EventEmitter<string>();
+  @Input() viajes: Viaje[] = [];
 
+  mostrarTarjetas = false;
+  
   constructor() { }
 
   ngOnInit(): void {
 
-    setTimeout(() => {
-      this.viajes = [{
-        id: '13456789643gf4dsg3f7dgdsf3',
-        nombre: 'Un placer para el paladar',
-        destino: 'Galicia',
-        tipoDeViajeId: TipoDeViaje.Gastronomico,
-        duracion: 14,
-        enOferta: false,
-        estado: 1,
-        plazas: 30
-      }];
-
-      // this.viajes.push({
-      //   id: '13456789643gf4dsg3f7dgdsf3',
-      //   nombre: 'Un placer para el paladar',
-      //   destino: 'Galicia',
-      //   tipoDeViajeId: TipoDeViaje.Gastronomico,
-      //   duracion: 14,
-      //   enOferta: false,
-      //   estado: 1,
-      //   plazas: 30
-      // });
-    }, 5000);
+   
 
   }
 

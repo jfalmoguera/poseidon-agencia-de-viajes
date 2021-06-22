@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+.btn {
+    width: 200px;
+    margin-right: 20px;
+    height: 34px;
+    color: #000;
+    border-color: rgba(0,0,0,.12);
+    background-color: white;
+    box-shadow: 0 0 0 0 rgb(0 0 0 / 20%), 0 0 0 0 rgb(0 0 0 / 14%), 0 0 0 0 rgb(0 0 0 / 12%);
+
+    &:hover {
+        background-color: rgba(128, 128, 128, 0.199);
+        cursor: pointer;
+    }
+
+    &.primary {
+        color: #3f51b5;
+        background: white;
+
+        &:hover {  
+            background-color: #3f51b52a;    
+        }
+
+        &:disabled {
+            background-color: gray !important;
+        }
+    }
+}
+
+.row-buttons {
+    display: flex;
+    flex-flow: row-reverse;
+    button{
+        margin-left: 20px;
+    }
+}

@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Viaje } from 'src/app/models/viaje';
+
 
 @Component({
   selector: 'app-viajes-table-list',
@@ -9,6 +10,8 @@ import { Viaje } from 'src/app/models/viaje';
 export class ViajesTableListComponent implements OnInit {
 
   @Input() viajes: Viaje[] = [];
+  @Output() editar = new EventEmitter<string>();
+
   constructor() { }
 
   ngOnInit(): void {

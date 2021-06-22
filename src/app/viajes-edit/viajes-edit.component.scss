@@ -1,0 +1,73 @@
+fieldset {
+    padding: 20px;
+    margin: 20px;
+
+    legend {
+        h1 {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
+}
+
+.flex-row {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+}
+
+.row-buttons {
+   margin-top: 40px;;
+}
+
+.field-element {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 200px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    label {
+        text-transform: uppercase;
+    }
+
+    input {
+        border: none;
+        border-bottom: 1px solid gray;
+        height: 32px;
+        font-size: 1.1rem;
+        outline: none;
+
+        &:focus {
+            border-bottom: 2px solid #3f51b5;
+        }
+
+        &.ng-dirty {
+            &.ng-invalid {
+                border: 1px solid red !important;
+            }
+        }
+    }
+
+    select {
+        border: none;
+        height: 32px;
+        border-bottom: 1px solid gray;
+        font-size: 1.1rem;
+        outline: none;
+        &.ng-dirty {
+            &.ng-invalid {
+                border: 1px solid red !important;
+            }
+        }
+
+        &:focus {
+            border-bottom: 2px solid #3f51b5;
+        }
+
+        &.ng-dirty {
+            &.ng-invalid {
+                border: 1px solid red !important;
+            }
+        }
+    }
+}

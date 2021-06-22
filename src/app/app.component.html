@@ -1,1 +1,3 @@
-<app-viajes-list></app-viajes-list>
+<app-viajes-list [viajes]="viajes" (editar)="editarClick($event)"></app-viajes-list>
+
+<app-viajes-edit [viaje]="viajeEdicion"  ></app-viajes-edit>
