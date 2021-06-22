@@ -10,10 +10,10 @@ export class ViajesModelService {
 
   private viajes: Viaje[] = [];
   private tiposDeViaje: IdValor[] = [
-    { id: 1, valor: 'Familiar' },
+    { id: 1, valor: 'Para la familia' },
     { id: 2, valor: 'Trabajo' },
-    { id: 3, valor: 'LunaDeMiel' },
-    { id: 4, valor: 'AhoraMismoPorFavor' },
+    { id: 3, valor: 'Luna De Miel' },
+    { id: 4, valor: 'Ahora Mismo Por Favor' },
     { id: 5, valor: 'Aventura' },
     { id: 6, valor: 'Cultural' },
     { id: 7, valor: 'Luxury' },
@@ -29,9 +29,11 @@ export class ViajesModelService {
       destino: 'Galicia',
       tipoDeViajeId: TipoDeViaje.Gastronomico,
       duracion: 14,
+      precio: 1240000,
       enOferta: false,
       estado: 1,
-      plazas: 30
+      plazas: 30,
+      fechaSalida: new Date(2021, 7, 1)
     }];
   }
 

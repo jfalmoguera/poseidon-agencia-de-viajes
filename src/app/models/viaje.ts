@@ -7,6 +7,8 @@ export interface Viaje {
     duracion: number;
     destino: string;
     plazas: number;
+    precio: number;
     enOferta: boolean;
     estado: number;
+    fechaSalida: Date;
 }

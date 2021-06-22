@@ -9,8 +9,10 @@
             <th>Destino</th>
             <th class="right">Duracion (días)</th>
             <th class="right">Plazas</th>
+            <th class="right">Precio</th>
             <th>Tipo de Viaje</th>
             <th>Estado</th>
+            <th>Fecha</th>
             <th class="center">En oferta</th>
             <th></th>
         </thead>
@@ -21,8 +23,10 @@
                 <td>{{viaje.destino}}</td>
                 <td class="right">{{viaje.duracion}}</td>
                 <td class="right">{{viaje.plazas}}</td>
-                <td>{{viaje.tipoDeViajeId}}</td>
+                <td>{{viaje.precio | currency:'':'symbol':'1.0-0'}}</td>
+                <td>{{viaje.tipoDeViajeId | tipoDeViaje}}</td>
                 <td>{{viaje.estado}}</td>  
+                <td>{{viaje.fechaSalida | date: 'fullDate'}}</td>
                 <td class="center">
                     <i class="fas" [ngClass]="viaje.enOferta ? 'fa-check' : ''"></i>
                 </td>

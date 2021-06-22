@@ -15,19 +15,6 @@ export class ViajesCardListComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges): void {
-
-    if (changes.viajes) {
-      this.viajes = [{
-        id: '13456789643gf4dsg3f7dgdsf3',
-        nombre: 'SUPER OFERTA',
-        destino: 'Galicia',
-        tipoDeViajeId: TipoDeViaje.Gastronomico,
-        duracion: 14,
-        enOferta: true,
-        estado: 1,
-        plazas: 30
-      }, ...this.viajes];
-    }
   }
 
   ngOnInit(): void {
