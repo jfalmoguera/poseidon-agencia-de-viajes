@@ -19,7 +19,12 @@ export class TipoDeViajePipe implements PipeTransform {
     }
   }
 
-  transform(tipoDeViajeId: number): string {
+  transform(tipoDeViajeId: number | null): string {
+
+    if (!tipoDeViajeId){
+      return '- - -';
+    }
+
     const tiposViajes = this.viajesModelService.getTiposDeViajes();
     const v = tiposViajes.find(x => x.id === tipoDeViajeId)?.valor;
 

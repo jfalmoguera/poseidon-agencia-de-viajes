@@ -1,14 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TipoDeViaje } from '../models/enums/tipo-de-viaje.enum';
+import { Observable, of } from 'rxjs';
 import { Viaje } from '../models/viaje';
 import { IdValor } from './id-valor';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ViajesModelService {
 
-  private viajes: Viaje[] = [];
   private tiposDeViaje: IdValor[] = [
     { id: 1, valor: 'Familar' },
     { id: 2, valor: 'Trabajo' },
@@ -20,50 +21,45 @@ export class ViajesModelService {
     { id: 8, valor: 'Gastronomico' },
   ];
 
-  id = 1;
+  private url = 'http://localhost:3000';
 
-  constructor() {
-    this.viajes = [{
-      id: 'viaje_' + this.id++,
-      nombre: 'Un placer para el paladar',
-      destino: 'Galicia',
-      tipoDeViajeId: TipoDeViaje.Gastronomico,
-      duracion: 14,
-      precio: 1240000,
-      enOferta: false,
-      estado: 1,
-      plazas: 30,
-      fechaSalida: new Date(2021, 7, 1)
-    }];
+  constructor(private http: HttpClient) {
   }
 
-  getViajes(): Viaje[] {
-    return [...this.viajes];
+  getViajes(): Observable<Viaje[]> {
+
+    return this.http.get<Viaje[]>(`${this.url}/viajes`).pipe(
+      map(x => x.map(v => new Viaje(v)))
+    );
+
   }
 
-  getViajeById(id: string): Viaje | undefined {
-    return this.viajes.find(x => x.id === id);
+  getViajeById(id: string): Observable<Viaje> {
+
+    return this.http.get<Viaje>(`${this.url}/viajes/${id}`).pipe(
+      map(x => new Viaje(x))
+    );
+
   }
 
-  guardar(viaje: Viaje): Viaje | null {
+  guardar(viaje: Viaje): Observable<Viaje | null> {
 
-    if (viaje) {
-
-      if (viaje.id) {
-        const idx = this.viajes.findIndex(x => x.id === viaje.id);
-        if (idx >= 0) {
-          this.viajes[idx] = { ...viaje };
-          return this.viajes[idx];
-        }
-      } else {
-        this.viajes.push({ ...viaje, id: `viaje_${this.id++}` })
-        return this.viajes[this.viajes.length - 1];
-      }
-
+    if (!viaje) {
+      return of(null);
     }
 
-    return null;
+    if (viaje.id) {
+      return this.http.put<Viaje>(`${this.url}/viajes/${viaje.id}`, viaje).pipe(
+        map(x => new Viaje(x))
+      );
+    }
+
+    return this.http.post<Viaje>(`${this.url}/viajes/`, viaje).pipe(
+      map(x => new Viaje(x))
+    );
+
   }
+
 
   eliminar(id: string): boolean {
 

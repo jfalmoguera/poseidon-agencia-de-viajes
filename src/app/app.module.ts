@@ -7,7 +7,7 @@ import { ViajesTableListComponent } from './viajes-list/viajes-table-list/viajes
 import { ViajesFilterComponent } from './viajes-list/viajes-filter/viajes-filter.component';
 import { ViajesEditComponent } from './viajes-edit/viajes-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http'
 import es from '@angular/common/locales/es';
 import it from '@angular/common/locales/it';
 import { registerLocaleData } from '@angular/common';
@@ -28,7 +28,8 @@ registerLocaleData(it);
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es' },

@@ -17,23 +17,28 @@ export class AppComponent implements OnInit {
   constructor(private viajesModelService: ViajesModelService) { }
 
   ngOnInit() {
-    this.viajes = this.viajesModelService.getViajes();
+    this.cargarViajes();
     this.tiposDeViaje = this.viajesModelService.getTiposDeViajes();
   }
 
   editarClick(id: string) {
+    this.viajesModelService.getViajeById(id).subscribe(viaje => {
+      if (viaje) {
+        this.viajeEdicion = viaje;
+      }
+    });
+  }
 
-    const v = this.viajesModelService.getViajeById(id);
-
-    if (v){
-      this.viajeEdicion = v;
+  guardar(viaje: Viaje): void {
+    if (viaje) {
+      this.viajesModelService.guardar(viaje).subscribe();
+      this.cargarViajes();
     }
   }
 
-  guardar(viaje: Viaje): void{
-    if (viaje){
-      this.viajesModelService.guardar(viaje);
-      this.viajes = this.viajesModelService.getViajes();
-    }
+  private cargarViajes() {
+    this.viajesModelService.getViajes().subscribe(x => {
+      this.viajes = x;
+    });
   }
 }
