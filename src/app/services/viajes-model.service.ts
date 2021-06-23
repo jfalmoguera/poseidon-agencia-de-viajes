@@ -10,7 +10,7 @@ export class ViajesModelService {
 
   private viajes: Viaje[] = [];
   private tiposDeViaje: IdValor[] = [
-    { id: 1, valor: 'Para la familia' },
+    { id: 1, valor: 'Familar' },
     { id: 2, valor: 'Trabajo' },
     { id: 3, valor: 'Luna De Miel' },
     { id: 4, valor: 'Ahora Mismo Por Favor' },

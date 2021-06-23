@@ -20,7 +20,7 @@
             <div class="field-element">
                 <label for="">Tipo de Viaje: </label>
                 <select id="" formControlName="tipoDeViajeId">
-                    <option *ngFor="let item of tiposDeViaje" [value]="item.id">{{item.valor}}</option>
+                    <option *ngFor="let item of tiposDeViaje" [ngValue]="item.id">{{item.valor}}</option>
                 </select>
             </div>
             <div class="field-element">
