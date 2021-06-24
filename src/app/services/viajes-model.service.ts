@@ -1,4 +1,4 @@
-import { HttpClient, HttpStatusCode } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Viaje } from '../models/viaje';
@@ -86,9 +86,41 @@ export class ViajesModelService {
 
   buscar(filtro: ViajesFilter): Observable<Viaje[]> {
     const { nombre, destino, tipoDeViajeId } = filtro;
-    const params = `tipoDeViajeId=${tipoDeViajeId}&nombre=${nombre}&destino=${destino}`;
 
-    return this.http.get<Viaje[]>(`${this.url}/viajes/search?${params}`).pipe(
+    // let params = '';
+
+    // if (filtro?.tipoDeViajeId) {
+    //   params = `tipoDeViajeId=${tipoDeViajeId}`;
+    // }
+
+    // if (filtro?.nombre) {
+    //   params = params ? `${params}&nombre=${nombre}` : `nombre=${nombre}`;
+    // }
+
+    // if (filtro?.destino) {
+    //   params = params ? `${params}&destino=${destino}` : `destino=${destino}`;
+    // }
+
+    // return this.http.get<Viaje[]>(`${this.url}/viajes/search?${params}`).pipe(
+    //   map(x => x.map(v => new Viaje(v)))
+    // );
+
+
+    let httpP = new HttpParams();
+
+    if (filtro?.tipoDeViajeId) {
+      httpP = httpP.set('tipoDeViajeId', tipoDeViajeId);
+    }
+
+    if (filtro?.nombre) {
+      httpP = httpP.set('nombre', nombre);
+    }
+
+    if (filtro?.destino) {
+      httpP = httpP.set('destino', destino);
+    }
+
+    return this.http.get<Viaje[]>(`${this.url}/viajes/search`, { params: httpP }).pipe(
       map(x => x.map(v => new Viaje(v)))
     );
 

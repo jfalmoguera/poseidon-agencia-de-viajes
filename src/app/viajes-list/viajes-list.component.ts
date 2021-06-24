@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { TipoDeViaje } from '../models/enums/tipo-de-viaje.enum';
 import { Viaje } from '../models/viaje';
 import { ViajesFilter } from '../models/viajes-filter';
 import { IdValor } from '../services/id-valor';
@@ -18,7 +17,7 @@ export class ViajesListComponent implements OnInit {
   @Output() search = new EventEmitter<ViajesFilter>();
 
   mostrarTarjetas = false;
-  
+
   constructor() { }
 
   ngOnInit(): void {

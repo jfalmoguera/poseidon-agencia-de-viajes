@@ -1,7 +1,8 @@
 <app-viajes-filter [tiposDeViaje]="tiposDeViaje" (search)="search.emit($event)" ></app-viajes-filter>
 
+
 <div class="button-actions">
-    <button (click)="cambiarVistaClick()">Cambiar vista</button>
+    <button class="btn primary" (click)="cambiarVistaClick()">Cambiar vista</button>
 </div>
 
 <app-viajes-table-list [viajes]="viajes" (borrar)="borrar.emit($event)" (editar)="editar.emit($event)" *ngIf="!mostrarTarjetas">

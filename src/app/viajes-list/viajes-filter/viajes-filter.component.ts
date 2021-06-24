@@ -29,6 +29,11 @@ export class ViajesFilterComponent implements OnInit {
   }
 
   searchClick(form: FormGroup) {
-    this.search.emit(form.value);
+    this.search.emit(new ViajesFilter(form.value));
+  }
+
+  reset(): void{
+    this.filterForm.reset();
+    this.search.emit(new ViajesFilter());
   }
 }
