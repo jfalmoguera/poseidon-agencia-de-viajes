@@ -11,6 +11,7 @@ export class ViajesTableListComponent implements OnInit {
 
   @Input() viajes: Viaje[] = [];
   @Output() editar = new EventEmitter<string>();
+  @Output() borrar = new EventEmitter<string>();
 
   constructor() { }
 

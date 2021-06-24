@@ -30,10 +30,10 @@ export class ViajesEditComponent implements OnInit, OnChanges {
       duracion: ['', [Validators.required, Validators.min(1)]],
       destino: ['', [Validators.required, this.validarDestino]],
       plazas: ['', [Validators.required, Validators.min(1)]],
-      precio: [],
+      precio: [null],
       fecha: [null],
-      enOferta: [''],
-      estado: ['']
+      enOferta: [null],
+      estado: [null]
     })
 
   }
@@ -67,12 +67,6 @@ export class ViajesEditComponent implements OnInit, OnChanges {
         this.viajesForm.controls.precio.setValue(this.viaje?.precio * 0.80);
       }
     });
-
-
-    this.viajesForm.valueChanges.subscribe(x => {
-      console.log(x);
-    })
-
   }
 
   guardarClick(form: FormGroup): void {

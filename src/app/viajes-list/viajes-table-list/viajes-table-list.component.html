@@ -31,6 +31,7 @@
                     <i class="fas" [ngClass]="viaje.enOferta ? 'fa-check' : ''"></i>
                 </td>
                 <td>
+                    <i class="fa fa-trash in-red" title="Eliminar Viaje" (click)="borrar.emit(viaje.id)"></i>     
                     <i class="far fa-edit" title="Editar Viaje" (click)="editar.emit(viaje.id)"></i>                     
                 </td>
             </tr>

@@ -29,10 +29,19 @@ export class AppComponent implements OnInit {
     });
   }
 
+  borrarClick(id: string): void {
+    if (id && window.confirm('¿Quieres borrar este viaje')){
+      this.viajesModelService.eliminar(id).subscribe(x => {
+        if (x){
+          this.cargarViajes();
+        }
+      })
+    }
+  }
+
   guardar(viaje: Viaje): void {
     if (viaje) {
-      this.viajesModelService.guardar(viaje).subscribe();
-      this.cargarViajes();
+      this.viajesModelService.guardar(viaje).subscribe(() => this.cargarViajes());
     }
   }
 

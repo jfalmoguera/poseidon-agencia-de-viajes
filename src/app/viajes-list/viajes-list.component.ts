@@ -9,9 +9,11 @@ import { Viaje } from '../models/viaje';
 })
 export class ViajesListComponent implements OnInit {
 
-  @Output() editar = new EventEmitter<string>();
+ 
   @Input() viajes: Viaje[] = [];
-
+  @Output() editar = new EventEmitter<string>();
+  @Output() borrar = new EventEmitter<string>();
+  
   mostrarTarjetas = false;
   
   constructor() { }

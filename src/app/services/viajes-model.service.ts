@@ -1,9 +1,15 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Viaje } from '../models/viaje';
 import { IdValor } from './id-valor';
 import { map } from 'rxjs/operators';
+
+export interface ViajeDelete {
+  destroyedRow: number
+  delete: boolean,
+  porque?: 'l.fdjafldskjflajflñasjflaksjfñlsdjfl'
+}
 
 @Injectable({
   providedIn: 'root'
@@ -60,10 +66,21 @@ export class ViajesModelService {
 
   }
 
+  eliminar(id: string): Observable<boolean | null> {
 
-  eliminar(id: string): boolean {
+    // Opcion de Victor
+    // if (id) {
+    //   return this.http.delete<boolean>(`${this.url}/viajes/${id}`)
+    //   // .pipe(
+    //   //   map(x => x.delete));
+    // }
 
-    return true;
+    if (id) {
+      return this.http.delete<any>(`${this.url}/viajes/${id}`, { observe: 'response' }).pipe(
+        map(x => x.status === HttpStatusCode.Ok));
+    }
+
+    return of(null);
   }
 
   getTiposDeViajes(): IdValor[] {
