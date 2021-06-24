@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Viaje } from '../models/viaje';
 import { IdValor } from './id-valor';
 import { map } from 'rxjs/operators';
+import { ViajesFilter } from '../models/viajes-filter';
 
 export interface ViajeDelete {
   destroyedRow: number
@@ -81,6 +82,16 @@ export class ViajesModelService {
     }
 
     return of(null);
+  }
+
+  buscar(filtro: ViajesFilter): Observable<Viaje[]> {
+    const { nombre, destino, tipoDeViajeId } = filtro;
+    const params = `tipoDeViajeId=${tipoDeViajeId}&nombre=${nombre}&destino=${destino}`;
+
+    return this.http.get<Viaje[]>(`${this.url}/viajes/search?${params}`).pipe(
+      map(x => x.map(v => new Viaje(v)))
+    );
+
   }
 
   getTiposDeViajes(): IdValor[] {

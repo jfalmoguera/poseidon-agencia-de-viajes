@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Viaje } from './models/viaje';
+import { ViajesFilter } from './models/viajes-filter';
 import { IdValor } from './services/id-valor';
 import { ViajesModelService } from './services/viajes-model.service';
 
@@ -30,9 +31,9 @@ export class AppComponent implements OnInit {
   }
 
   borrarClick(id: string): void {
-    if (id && window.confirm('¿Quieres borrar este viaje')){
+    if (id && window.confirm('¿Quieres borrar este viaje')) {
       this.viajesModelService.eliminar(id).subscribe(x => {
-        if (x){
+        if (x) {
           this.cargarViajes();
         }
       })
@@ -42,6 +43,14 @@ export class AppComponent implements OnInit {
   guardar(viaje: Viaje): void {
     if (viaje) {
       this.viajesModelService.guardar(viaje).subscribe(() => this.cargarViajes());
+    }
+  }
+
+  searchClick(filtro: ViajesFilter): void {
+    if (filtro) {
+      this.viajesModelService.buscar(filtro).subscribe(viajes => {
+        this.viajes = viajes;
+      })
     }
   }
 

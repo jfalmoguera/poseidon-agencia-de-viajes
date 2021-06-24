@@ -1,5 +1,8 @@
-<app-viajes-list [viajes]="viajes" (editar)="editarClick($event)"
-(borrar)="borrarClick($event)"
-></app-viajes-list>
+<app-viajes-list [viajes]="viajes" 
+(editar)="editarClick($event)"
+ (borrar)="borrarClick($event)" [tiposDeViaje]="tiposDeViaje"
+ (search)="searchClick($event)"
+ >
+</app-viajes-list>
 
-<app-viajes-edit [viaje]="viajeEdicion" [tiposDeViaje]="tiposDeViaje" (guardar)="guardar($event)" ></app-viajes-edit>
+<app-viajes-edit [viaje]="viajeEdicion" [tiposDeViaje]="tiposDeViaje" (guardar)="guardar($event)"></app-viajes-edit>
